@@ -1,4 +1,8 @@
 package com.smartopd.exception;
 
-public class InvalidOtpException {
+public class InvalidOtpException extends RuntimeException {
+
+    public InvalidOtpException(String message) {
+        super(message);
+    }
 }
