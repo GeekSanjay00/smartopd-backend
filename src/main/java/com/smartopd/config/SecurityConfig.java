@@ -30,11 +30,15 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // Public APIs — koi bhi access kar sakta hai
+                        // Public APIs - no token needed
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/swagger-ui.html").permitAll()
                         .requestMatchers("/v3/api-docs/**").permitAll()
-                        // Baaki sab protected
+                        .requestMatchers("/v3/api-docs").permitAll()
+                        .requestMatchers("/webjars/**").permitAll()
+                        .requestMatchers("/ws/**").permitAll()
+                        // All other APIs need JWT token
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter,
                         UsernamePasswordAuthenticationFilter.class);
