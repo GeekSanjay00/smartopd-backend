@@ -31,13 +31,14 @@ public class AuthService {
             throw new RuntimeException("Phone number already registered");
         }
 
-        // Create new user
+        // Create new user with isActive = true
         User user = User.builder()
                 .name(request.getName())
                 .phone(request.getPhone())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.PATIENT)
+                .isActive(true)
                 .build();
 
         userRepository.save(user);
@@ -84,7 +85,6 @@ public class AuthService {
 
     // Send OTP
     public void sendOtp(String phone) {
-        // Check if user exists
         if (!userRepository.existsByPhone(phone)) {
             throw new ResourceNotFoundException("User not found with phone: " + phone);
         }

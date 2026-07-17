@@ -72,6 +72,7 @@ public class AdminService {
                 .phone(phone)
                 .password(passwordEncoder.encode(password))
                 .role(Role.DOCTOR)
+                .isActive(true)
                 .build();
         userRepository.save(user);
 

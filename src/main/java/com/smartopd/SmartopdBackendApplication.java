@@ -13,4 +13,4 @@ public class SmartopdBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SmartopdBackendApplication.class, args);
 	}
-} 
+}
